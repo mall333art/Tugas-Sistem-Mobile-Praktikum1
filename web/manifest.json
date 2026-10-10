@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
     "name": "praktikum3",
     "short_name": "praktikum3",
+=======
+    "name": "tugas_mobile",
+    "short_name": "tugas_mobile",
+>>>>>>> 13db1c42d9ca642e6c5cd45ad6d317ac54e06148
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,6 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
+<<<<<<< HEAD
         android:label="praktikum3"
+=======
+        android:label="tugas_mobile"
+>>>>>>> 13db1c42d9ca642e6c5cd45ad6d317ac54e06148
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

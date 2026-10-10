@@ -5,7 +5,11 @@ plugins {
 }
 
 android {
+<<<<<<< HEAD
     namespace = "com.example.praktikum3"
+=======
+    namespace = "com.example.tugas_mobile"
+>>>>>>> 13db1c42d9ca642e6c5cd45ad6d317ac54e06148
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -16,7 +20,11 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+<<<<<<< HEAD
         applicationId = "com.example.praktikum3"
+=======
+        applicationId = "com.example.tugas_mobile"
+>>>>>>> 13db1c42d9ca642e6c5cd45ad6d317ac54e06148
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

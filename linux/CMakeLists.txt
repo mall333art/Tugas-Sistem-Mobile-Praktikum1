@@ -4,10 +4,17 @@ project(runner LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
+<<<<<<< HEAD
 set(BINARY_NAME "praktikum3")
 # The unique GTK application identifier for this application. See:
 # https://wiki.gnome.org/HowDoI/ChooseApplicationID
 set(APPLICATION_ID "com.example.praktikum3")
+=======
+set(BINARY_NAME "tugas_mobile")
+# The unique GTK application identifier for this application. See:
+# https://wiki.gnome.org/HowDoI/ChooseApplicationID
+set(APPLICATION_ID "com.example.tugas_mobile")
+>>>>>>> 13db1c42d9ca642e6c5cd45ad6d317ac54e06148
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.

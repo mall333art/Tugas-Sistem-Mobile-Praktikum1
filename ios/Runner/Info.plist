@@ -7,7 +7,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
+<<<<<<< HEAD
 	<string>Praktikum3</string>
+=======
+	<string>Tugas Mobile</string>
+>>>>>>> 13db1c42d9ca642e6c5cd45ad6d317ac54e06148
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,7 +19,11 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
+<<<<<<< HEAD
 	<string>praktikum3</string>
+=======
+	<string>tugas_mobile</string>
+>>>>>>> 13db1c42d9ca642e6c5cd45ad6d317ac54e06148
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

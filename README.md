@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # praktikum3
+=======
+# tugas_mobile
+>>>>>>> 13db1c42d9ca642e6c5cd45ad6d317ac54e06148
 
 A new Flutter project.
 
