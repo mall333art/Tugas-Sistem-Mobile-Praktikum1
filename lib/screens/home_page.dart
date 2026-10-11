@@ -1,153 +1,87 @@
 import 'package:flutter/material.dart';
-
-// Model produk sederhana
-class Product {
-  final String name;
-  final int price;
-  final bool isDiskon;
-
-  Product({required this.name, required this.price, required this.isDiskon});
-}
+import '../models/product.dart';
+import '../widgets/custom_components.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
-  // Daftar 15 produk dummy sederhana
-  final List<Product> productList = List.generate(
-    15,
-    (index) => Product(
-      name: 'Produk TokoKita ${index + 1}',
-      price: (index + 1) * 25000,
-      isDiskon: index % 3 == 0, // Diskon tiap kelipatan 3
-    ),
-  );
+  final List<Product> dummyProducts = [
+    Product(
+        id: '1',
+        name: 'Laptop Gaming ASUS',
+        price: 12000000,
+        imageUrl: '',
+        category: 'Elektronik',
+        stock: 5,
+        description:
+            'Laptop gaming performa tinggi dengan kartu grafis terkini.'),
+    Product(
+        id: '2',
+        name: 'Sepatu Sneakers Nike',
+        price: 1200000,
+        imageUrl: '',
+        category: 'Fashion',
+        stock: 10,
+        description: 'Sepatu sneakers nyaman untuk kegiatan sehari-hari.'),
+    Product(
+        id: '3',
+        name: 'Mechanical Keyboard',
+        price: 750000,
+        imageUrl: '',
+        category: 'Elektronik',
+        stock: 3,
+        description: 'Keyboard mekanikal RGB dengan switch yang responsif.'),
+    Product(
+        id: '4',
+        name: 'Tas Ransel Laptop',
+        price: 350000,
+        imageUrl: '',
+        category: 'Fashion',
+        stock: 8,
+        description: 'Tas ransel anti air dengan kompartemen laptop khusus.'),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TokoKita'),
-        backgroundColor: Colors.blue,
+        title: const Text('TokoKita - Beranda'),
+        backgroundColor: AppThemeConfig.primaryColor,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // 1. Header sederhana dengan Row & Column
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            color: Colors.blue.shade50,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Katalog Produk',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Silakan pilih produk favoritmu',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ],
-                ),
-                const Icon(Icons.shopping_cart, color: Colors.blue),
-              ],
+      body: ListView.builder(
+        itemCount: dummyProducts.length,
+        itemBuilder: (context, index) {
+          final product = dummyProducts[index];
+          return Card(
+            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            elevation: 2,
+            child: ListTile(
+              title: Text(product.name, style: AppThemeConfig.primaryFont),
+              subtitle: Text('Rp ${product.price} | Stok: ${product.stock}',
+                  style: AppThemeConfig.priceFont),
+              trailing: CustomPrimaryButton(
+                text: 'Detail',
+                onPressed: () async {
+                  // Navigasi menggunakan named route dan mengirim argumen Product, serta menunggu nilai kembalian
+                  final result = await Navigator.pushNamed(
+                    context,
+                    '/detail',
+                    arguments: product,
+                  );
+
+                  // Jika ada data yang dikembalikan dari Navigator.pop di halaman detail
+                  if (result != null && context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content: Text(
+                              'Berhasil menambahkan $result item ke keranjang!')),
+                    );
+                  }
+                },
+              ),
             ),
-          ),
-
-          const Divider(height: 1),
-
-          // 2. Daftar produk dengan ListView.builder
-          Expanded(
-            child: ListView.builder(
-              itemCount: productList.length,
-              itemBuilder: (context, index) {
-                final product = productList[index];
-
-                // Container untuk pembungkus kartu produk dengan shadow & border radius
-                return Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Sudut melengkung
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey
-                            .withOpacity(0.2), // Efek bayangan (shadow)
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3), // Posisi bayangan ke bawah
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      // 3. Stack & Positioned untuk Badge Diskon Sederhana
-                      Stack(
-                        children: [
-                          Container(
-                            width: 60,
-                            height: 60,
-                            color: Colors.grey.shade200,
-                            child: const Icon(Icons.image, color: Colors.grey),
-                          ),
-                          if (product.isDiskon)
-                            Positioned(
-                              top: 2,
-                              right: 2,
-                              child: Container(
-                                padding: const EdgeInsets.all(2),
-                                color: Colors.red,
-                                child: const Text(
-                                  'DISC',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 9,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
-                      const SizedBox(width: 12),
-
-                      // 4. Expanded untuk teks nama dan harga
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              product.name,
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              'Rp ${product.price}',
-                              style: const TextStyle(
-                                color: Colors.blueAccent,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

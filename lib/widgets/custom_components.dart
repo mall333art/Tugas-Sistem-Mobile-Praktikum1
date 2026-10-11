@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppThemeConfig {
-  // Mengubah warna utama menjadi Cyan (Blue Cyan)
-  static const Color primaryColor = Colors.cyan;
+  static const Color primaryColor = Colors.cyan; // Tema Blue Cyan
 
   static const TextStyle primaryFont = TextStyle(
     fontSize: 16,
@@ -19,7 +18,7 @@ class AppThemeConfig {
   static const TextStyle priceFont = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w600,
-    color: Colors.teal, // Disesuaikan agar serasi dengan cyan
+    color: Colors.teal,
   );
 }
 
