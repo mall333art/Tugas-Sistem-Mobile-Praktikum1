@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+import 'package:get/get.dart';
+import '../controllers/cart_controller.dart';
 import 'home_page.dart';
 import 'cart_page.dart';
 import 'profile_page.dart';
 import '../widgets/custom_components.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  final int initialIndex;
+  const MainPage({Key? key, this.initialIndex = 0}) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  int _currentIndex = 0;
+  late int _currentIndex;
+
+  // Dependency Injection: mendaftarkan CartController saat MainPage dibuat
+  final CartController cartController = Get.put(CartController());
 
   final List<Widget> _pages = [
     HomePage(),
@@ -22,9 +28,14 @@ class _MainPageState extends State<MainPage> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // extendBody true membuat konten halaman tembus hingga ke bawah floating dock
       extendBody: true,
       body: _pages[_currentIndex],
       bottomNavigationBar: Padding(
